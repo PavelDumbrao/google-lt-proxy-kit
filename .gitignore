@@ -1,0 +1,4 @@
+*.local.yaml
+google-lt.yaml
+proxy_credentials*.txt
+.DS_Store
