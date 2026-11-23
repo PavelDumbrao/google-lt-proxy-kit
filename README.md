@@ -1,8 +1,9 @@
-# Сервисы Google через литовский прокси
+# Сервисы Google и Claude Code через литовский прокси
 
 Набор для ИИ-агента ученика: он сам ставит Clash Verge Rev и настраивает компьютер так, что
-**Gemini, NotebookLM, AI Studio, Google Antigravity** и вход в аккаунт Google идут через литовский прокси,
-а весь остальной интернет — как обычно.
+**Gemini, NotebookLM, AI Studio, Google Antigravity** и вход в аккаунт Google идут через литовский прокси.
+Через тот же прокси агент пускает **Claude Code** (и с ним Claude Desktop и claude.ai).
+Весь остальной интернет идёт как обычно.
 
 Работает на macOS и Windows.
 
@@ -18,11 +19,15 @@
 ```
 
 3. Делайте то, что попросит агент: пару кликов в Clash Verge Rev и пароль от компьютера при установке служебного режима.
+4. В конце полностью закройте и снова откройте Claude Code — он пойдёт через прокси.
+
+Если Claude Code у вас пока не запускается, дайте это задание другому агенту (Codex, ZCode):
+он настроит прокси, и Claude Code заработает.
 
 ## Что внутри
 
 - [`AGENT.md`](AGENT.md) — пошаговое задание для агента.
-- [`config/google-lt.template.yaml`](config/google-lt.template.yaml) — шаблон профиля: Google → прокси, остальное напрямую.
+- [`config/google-lt.template.yaml`](config/google-lt.template.yaml) — шаблон профиля: Google и Claude → прокси, остальное напрямую.
 
 ## Как выключить
 

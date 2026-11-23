@@ -1,4 +1,5 @@
-# Профиль Clash Verge Rev: сервисы Google через литовский прокси, остальное напрямую.
+# Профиль Clash Verge Rev: сервисы Google и Claude (Claude Code, Claude Desktop, claude.ai)
+# через литовский прокси, остальное напрямую.
 # Агент подставляет HOST, PORT, LOGIN, PASSWORD из файла прокси ученика.
 # Готовый файл с паролем НЕ публиковать и НЕ коммитить.
 
@@ -55,6 +56,10 @@ proxy-groups:
     type: select
     proxies:
       - LT
+  - name: CLAUDE
+    type: select
+    proxies:
+      - LT
 
 rules:
   # QUIC (UDP 443) не проходит через этот прокси: браузер сам перейдёт на обычный TCP.
@@ -78,5 +83,10 @@ rules:
   - DOMAIN-SUFFIX,withgoogle.com,GOOGLE
   - DOMAIN-SUFFIX,recaptcha.net,GOOGLE
   - DOMAIN-SUFFIX,1e100.net,GOOGLE
+  # Claude Code, Claude Desktop, claude.ai, вход в аккаунт Anthropic
+  - DOMAIN-SUFFIX,anthropic.com,CLAUDE
+  - DOMAIN-SUFFIX,claude.ai,CLAUDE
+  - DOMAIN-SUFFIX,claude.com,CLAUDE
+  - DOMAIN-SUFFIX,claudeusercontent.com,CLAUDE
   # Всё остальное, включая YouTube, — напрямую (прокси общий, видео забьёт канал).
   - MATCH,DIRECT
