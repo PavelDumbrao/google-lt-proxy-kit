@@ -1,0 +1,47 @@
+# Локальный mihomo для Claude Code: Claude и Google идут через прокси ученика, остальное напрямую.
+# Агент подставляет HOST, PORT, LOGIN, PASSWORD из строки прокси ученика.
+# Готовый файл с паролем НЕ публиковать и НЕ коммитить.
+# Слушает только этот компьютер (127.0.0.1), права администратора не нужны.
+
+mixed-port: 17890
+bind-address: 127.0.0.1
+allow-lan: false
+mode: rule
+log-level: warning
+ipv6: false
+
+proxies:
+  - name: LT
+    type: socks5
+    server: HOST
+    port: PORT
+    username: LOGIN
+    password: PASSWORD
+    udp: false
+
+proxy-groups:
+  - name: CLAUDE
+    type: select
+    proxies:
+      - LT
+  - name: GOOGLE
+    type: select
+    proxies:
+      - LT
+
+rules:
+  # Claude Code, claude.ai, вход в аккаунт Anthropic, установщик и обновления
+  - DOMAIN-SUFFIX,anthropic.com,CLAUDE
+  - DOMAIN-SUFFIX,claude.ai,CLAUDE
+  - DOMAIN-SUFFIX,claude.com,CLAUDE
+  - DOMAIN-SUFFIX,claudeusercontent.com,CLAUDE
+  # Google: вход в аккаунт через Google, Gemini, NotebookLM, AI Studio
+  - DOMAIN-SUFFIX,google.com,GOOGLE
+  - DOMAIN-SUFFIX,googleapis.com,GOOGLE
+  - DOMAIN-SUFFIX,gstatic.com,GOOGLE
+  - DOMAIN-SUFFIX,googleusercontent.com,GOOGLE
+  - DOMAIN-SUFFIX,google.dev,GOOGLE
+  - DOMAIN-SUFFIX,withgoogle.com,GOOGLE
+  - DOMAIN-SUFFIX,recaptcha.net,GOOGLE
+  # Всё остальное — напрямую, мимо прокси.
+  - MATCH,DIRECT

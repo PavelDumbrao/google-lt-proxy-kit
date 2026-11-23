@@ -24,9 +24,24 @@
 Если Claude Code у вас пока не запускается, дайте это задание другому агенту (Codex, ZCode):
 он настроит прокси, и Claude Code заработает.
 
+## Только Claude Code, без кликов
+
+Если нужен только Claude Code в терминале и агент должен всё сделать сам (поставить mihomo, настроить,
+установить Claude Code), вставьте агенту (OpenCode, Codex, ZCode):
+
+```text
+Открой https://raw.githubusercontent.com/PavelDumbrao/google-lt-proxy-kit/main/AGENT-CLAUDE-CODE.md
+и выполни это задание от начала до конца.
+Мой прокси (SOCKS5, host:port:login:password): <строка прокси>
+```
+
+Пароль от компьютера и Clash Verge Rev в этом варианте не нужны. От вас — только вход в аккаунт Claude в конце.
+
 ## Что внутри
 
 - [`AGENT.md`](AGENT.md) — пошаговое задание для агента.
+- [`AGENT-CLAUDE-CODE.md`](AGENT-CLAUDE-CODE.md) — задание «только Claude Code»: агент сам ставит mihomo и подключает Claude Code.
+- [`config/claude-code.template.yaml`](config/claude-code.template.yaml) — конфиг mihomo для этого задания.
 - [`config/google-lt.template.yaml`](config/google-lt.template.yaml) — шаблон профиля: Google и Claude → прокси, остальное напрямую.
 
 ## Как выключить
